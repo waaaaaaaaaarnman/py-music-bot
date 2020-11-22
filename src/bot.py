@@ -17,7 +17,7 @@ COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips]
 
 def add_cogs(bot):
     for cog in COGS:
-        bot.add_cog(cog(bot))  # Initialize the cog and add it to the bot
+        bot.load_extension(cog(bot))  # Initialize the cog and add it to the bot
 
 
 def run():
