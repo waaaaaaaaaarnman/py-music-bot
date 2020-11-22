@@ -4,7 +4,7 @@ import sys
 from discord.ext import commands
 from cogs import music, error, meta, tips
 import os
-bot = commands.Bot(command_prefix=os.envrion["prefix"])
+bot = commands.Bot(command_prefix=os.environ["prefix"])
 
 
 @bot.event
@@ -22,9 +22,9 @@ def add_cogs(bot):
 
 def run():
     add_cogs(bot)
-    if cfg["token"] == "":
+    if os.environ["token"] == "":
         raise ValueError(
             "No token has been provided. Please ensure that config.toml contains the bot token."
         )
         sys.exit(1)
-    bot.run(os.envrion["token"])
+    bot.run(os.environ["token"])
