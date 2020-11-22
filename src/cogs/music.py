@@ -6,7 +6,7 @@ import logging
 import math
 from urllib import request
 from video import Video
-
+impost os
 
 async def audio_playing(ctx):
     """Checks that audio is currently playing before continuing."""
@@ -45,8 +45,6 @@ class Music:
 
     def __init__(self, bot, config):
         self.bot = bot
-        self.config = config[__name__.split(".")[
-            -1]]  # retrieve module name, find config entry
         self.states = {}
 
     def get_state(self, guild):
@@ -100,7 +98,7 @@ class Music:
         if volume < 0:
             volume = 0
 
-        max_vol = self.config["max_volume"]
+        max_vol = os.environ["max_volume"]
         if max_vol > -1:  # check if max volume is set
             # clamp volume to [0, max_vol]
             if volume > max_vol:
@@ -123,7 +121,7 @@ class Music:
                 ctx.author).administrator or state.is_requester(ctx.author):
             # immediately skip if requester or admin
             client.stop()
-        elif self.config["vote_skip"]:
+        elif os.environ["vote_skip"]:
             # vote to skip song
             channel = client.channel
             self._vote_skip(channel, ctx.author)
@@ -132,7 +130,7 @@ class Music:
                 member for member in channel.members if not member.bot
             ])  # don't count bots
             required_votes = math.ceil(
-                self.config["vote_skip_ratio"] * users_in_channel)
+                os.environ["vote_skip_ratio"] * users_in_channel)
             await ctx.send(
                 f"{ctx.author.mention} voted to skip ({len(state.skip_votes)}/{required_votes} votes)"
             )
