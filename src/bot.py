@@ -3,11 +3,8 @@ import logging
 import sys
 from discord.ext import commands
 from cogs import music, error, meta, tips
-import config
-
-cfg = config.load_config()
-
-bot = commands.Bot(command_prefix=cfg["prefix"])
+import os
+bot = commands.Bot(command_prefix=os.envrion["prefix"])
 
 
 @bot.event
@@ -30,4 +27,4 @@ def run():
             "No token has been provided. Please ensure that config.toml contains the bot token."
         )
         sys.exit(1)
-    bot.run(cfg["token"])
+    bot.run(os.envrion["token"])
