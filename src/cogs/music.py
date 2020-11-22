@@ -6,7 +6,7 @@ import logging
 import math
 from urllib import request
 from video import Video
-impost os
+import os
 
 async def audio_playing(ctx):
     """Checks that audio is currently playing before continuing."""
